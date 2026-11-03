@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToMee - Plateforme Immobilière</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Icons/css/boxicons.min.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <section class="nav-content">
+
+        <div class="left">
+            <div class="logo-wrapper">
+                <a href="index.html" class="logo-text">ToMee</a>
+            </div>
+        </div>
+
+        <div class="center">
+            <input type="search" name="search" id="searchInput" placeholder="Rechercher par mot-clé (ville, quartier...)">
+            <a href="#" id="searchBtn"><i class="bx bx-search"></i></a>
+        </div>
+
+        <div class="right">
+            <a href="#" id="mobileSearchTrigger" class="mobile-search-trigger"><i class="bx bx-search"></i></a>
+            <a href="login.html" class="nav-btn btn-login">Se connecter</a>
+            <a href="register.html" class="nav-btn btn-signup">S'inscrire</a>
+
+            <div class="mobile-search-bar" id="mobileSearchBar">
+                <input type="search" id="mobileSearchInput" placeholder="Rechercher...">
+                <button type="button" id="mobileSearchSubmit" class="mobile-search-btn"><i class="bx bx-search"></i></button>
+                <button type="button" id="mobileSearchClose" class="mobile-search-btn"><i class="bx bx-x"></i></button>
+            </div>
+        </div>
+
+    </section>
+    <section class="body-content">
+        <div class="left-content">
+            <h1>La Maison de <br> Vos Rêves<i class="bx bx-right-arrow-alt" id="exploreArrow"></i></h1>
+            
+            <p>Nous proposons des maisons modernes et adéquates pour la nouvelle génération.
+                Trouvez l'appartement idéal à louer ou à acheter en toute simplicité, que vous soyez un particulier ou une agence.</p>
+        </div>
+        <div class="right-content">
+
+            <div class="box-content">
+
+                <div class="box box1" data-bg="img (1).jpg">
+                    <h1>+23.000<i class="bx bx-coin-stack"></i></h1>
+                    <p>Biens vendus et loués ces 5 dernières années</p>
+                </div>
+
+                <div class="box box2" data-bg="img (2).jpg">
+                    <h1>+15<i class="bx bx-user-plus"></i></h1>
+                    <p>Plus de 15 ans d'expertise immobilière</p>
+                </div>
+
+                <div class="box box3" data-bg="img (3).jpg">
+                    <h1>+200<i class="bx bx-building"></i></h1>
+                    <p>Nouveaux biens ajoutés chaque mois</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- Background overlay for smooth transition -->
+    <div class="bg-overlay"></div>
+</body>
+</html>

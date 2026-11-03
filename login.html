@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Se connecter - ToMee</title>
+    <link rel="stylesheet" href="styleRegister.css">
+    <link rel="stylesheet" href="Icons/css/boxicons.min.css">
+    <script src="loginApp.js" defer></script>
+</head>
+<body>
+    <div class="register-container">
+        
+        <!-- Logo Header -->
+        <header class="register-header">
+            <div class="logo-wrapper">
+                <a href="login.html" class="logo-text">ToMee</a>
+            </div>
+            <p>Connectez-vous pour accéder à votre espace personnel et gérer vos biens.</p>
+        </header>
+
+        <!-- Glassmorphic Login Card -->
+        <main class="register-card login-card">
+            
+            <h2 class="login-title"><i class="bx bx-log-in-circle"></i> Connexion</h2>
+
+            <form id="form-login" class="login-form">
+                <div class="form-group">
+                    <label for="login-email">Adresse e-mail</label>
+                    <div class="input-wrapper">
+                        <i class="bx bx-envelope input-icon"></i>
+                        <input type="email" id="login-email" placeholder="jeandossou@gmail.com" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="login-password">Mot de passe</label>
+                    <div class="input-wrapper">
+                        <i class="bx bx-lock-alt input-icon"></i>
+                        <input type="password" id="login-password" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <div class="login-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="remember-me">
+                        <span class="checkmark"></span>
+                        Se souvenir de moi
+                    </label>
+                    <a href="#" class="forgot-link">Mot de passe oublié ?</a>
+                </div>
+
+                <button type="submit" class="submit-btn btn-signup">Se connecter</button>
+            </form>
+
+            <div class="login-divider">
+                <span>ou</span>
+            </div>
+
+            <div class="social-login">
+                <button class="social-btn" id="btn-google">
+                    <i class="bx bxl-google"></i> Continuer avec Google
+                </button>
+            </div>
+
+            <!-- Card Footer -->
+            <footer class="card-footer">
+                <p>Pas encore de compte ? <a href="register.html" class="login-link">S'inscrire</a></p>
+                <a href="index.html" class="back-home"><i class="bx bx-arrow-back"></i> Retour à l'accueil</a>
+            </footer>
+
+        </main>
+    </div>
+    <!-- Blurred Background Overlay -->
+    <div class="register-bg"></div>
+</body>
+</html>

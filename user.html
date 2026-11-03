@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Hommy - Dashboard</title>
+    <link rel="stylesheet" href="Icons/css/boxicons.min.css">
+    <link rel="stylesheet" href="styleUser.css">
+    <script src="userApp.js" defer></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="bx bx-home-heart"></i>
+                <span>My Hommy</span>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="#" class="active"><i class="bx bxs-dashboard"></i> Dashboard</a>
+                <a href="index.html"><i class="bx bx-left-arrow-alt"></i> Back Home</a>
+                <a href="#" class="nav-disabled"><i class="bx bx-devices"></i> Devices</a>
+                <a href="#" class="nav-disabled"><i class="bx bx-cog"></i> Settings</a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <i class="bx bx-user-circle"></i>
+                    <div>
+                        <h4>John Doe</h4>
+                        <p>Owner</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Top Header -->
+            <header class="header">
+                <div class="welcome">
+                    <h1>Welcome Back, <span>John</span>!</h1>
+                    <p>All smart home systems are functioning normally.</p>
+                </div>
+                
+                <div class="weather-widget">
+                    <i class="bx bx-sun weather-icon"></i>
+                    <div class="weather-text">
+                        <h3>24°C</h3>
+                        <p>Sunny • Paris, FR</p>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                
+                <!-- Thermostat Card -->
+                <section class="card climate-card">
+                    <div class="card-header">
+                        <h3>Climate Control</h3>
+                        <i class="bx bx-wind card-icon-bg"></i>
+                    </div>
+                    <div class="temp-display">
+                        <span id="temp-val">21</span><span class="unit">°C</span>
+                    </div>
+                    <p class="status-desc">Target temperature set</p>
+                    <div class="temp-controls">
+                        <button class="btn-temp" id="temp-down"><i class="bx bx-minus"></i></button>
+                        <button class="btn-temp" id="temp-up"><i class="bx bx-plus"></i></button>
+                    </div>
+                    <div class="humidity-status">
+                        <span><i class="bx bx-water"></i> Humidity: 45%</span>
+                        <span><i class="bx bx-shuffle"></i> AC Mode: Auto</span>
+                    </div>
+                </section>
+
+                <!-- Lighting Control Card -->
+                <section class="card lights-card">
+                    <div class="card-header">
+                        <h3>Smart Lights</h3>
+                        <i class="bx bx-bulb card-icon-bg"></i>
+                    </div>
+                    <div class="control-list">
+                        <div class="control-item">
+                            <span>Living Room</span>
+                            <label class="switch">
+                                <input type="checkbox" id="light-living" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="control-item">
+                            <span>Kitchen Area</span>
+                            <label class="switch">
+                                <input type="checkbox" id="light-kitchen">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="control-item">
+                            <span>Master Bedroom</span>
+                            <label class="switch">
+                                <input type="checkbox" id="light-bedroom" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="control-item">
+                            <span>Front Yard</span>
+                            <label class="switch">
+                                <input type="checkbox" id="light-yard">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Security Center Card -->
+                <section class="card security-card">
+                    <div class="card-header">
+                        <h3>Security Center</h3>
+                        <i class="bx bx-shield-quarter card-icon-bg"></i>
+                    </div>
+                    <div class="security-status secured" id="security-status-box">
+                        <i class="bx bx-lock-alt" id="security-icon"></i>
+                        <span id="security-text">SYSTEM SECURED</span>
+                    </div>
+                    <p class="status-desc">All doors and windows are closed.</p>
+                    <button class="btn-security secured" id="btn-security-toggle">ARM SYSTEM</button>
+                </section>
+
+                <!-- Energy Usage Card -->
+                <section class="card energy-card">
+                    <div class="card-header">
+                        <h3>Power Consumption</h3>
+                        <i class="bx bx-bolt card-icon-bg"></i>
+                    </div>
+                    <div class="energy-stat">
+                        <h2>12.4 <span>kWh</span></h2>
+                        <p>Used today • 8% lower than average</p>
+                    </div>
+                    <div class="energy-chart">
+                        <div class="chart-bar" style="height: 40%;" title="Mon: 11.2 kWh"></div>
+                        <div class="chart-bar" style="height: 65%;" title="Tue: 13.5 kWh"></div>
+                        <div class="chart-bar" style="height: 50%;" title="Wed: 12.0 kWh"></div>
+                        <div class="chart-bar" style="height: 75%;" title="Thu: 14.2 kWh"></div>
+                        <div class="chart-bar active" style="height: 55%;" title="Today: 12.4 kWh"></div>
+                    </div>
+                </section>
+
+            </div>
+
+        </main>
+    </div>
+</body>
+</html>

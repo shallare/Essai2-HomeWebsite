@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToMee - Dashboard Agence | Gérez vos biens immobiliers</title>
+    <meta name="description" content="Tableau de bord agence ToMee. Publiez, gérez et suivez vos annonces immobilières en Afrique.">
+
+    <!-- Google Fonts — Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Remix Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css">
+
+    <!-- Dashboard Stylesheet -->
+    <link rel="stylesheet" href="styleAgencyDashboard.css">
+
+    <!-- Dashboard App -->
+    <script src="agencyDashboardApp.js" defer></script>
+</head>
+<body>
+
+    <div class="dashboard-wrapper">
+
+        <!-- ===== TOP NAVBAR (identique au dashboard particulier) ===== -->
+        <nav class="dashboard-navbar" id="dashboardNavbar">
+            <div class="nav-left">
+                <a href="agencyDashboard.html" class="logo-wrapper">
+                    <span class="logo-text">ToMee</span>
+                </a>
+            </div>
+
+            <div class="nav-center">
+                <span class="navbar-agency-name" id="navAgencyName">Abomey Immo</span>
+            </div>
+
+            <div class="nav-right">
+                <button class="nav-icon-btn" id="darkModeToggle" title="Mode sombre">
+                    <i class="ri-moon-line"></i>
+                </button>
+                <a href="index.html" class="nav-icon-btn" id="logoutBtn" title="Se déconnecter">
+                    <i class="ri-logout-box-r-line"></i>
+                </a>
+            </div>
+        </nav>
+
+        <!-- ===== MAIN DASHBOARD ===== -->
+        <main class="dashboard-card">
+
+            <!-- ══════ SECTION 1 — Tableau de bord (Bento Grid) ══════ -->
+            <section class="dashboard-section active-section" id="section-ag-home">
+                <div class="bento-grid" id="bentoGrid">
+                    <!-- Généré dynamiquement par JS -->
+                </div>
+            </section>
+
+            <!-- ══════ SECTION 2 — Publier un bien ══════ -->
+            <section class="dashboard-section" id="section-ag-publish">
+                <form class="publish-layout" id="publishForm" autocomplete="off">
+                    <!-- ID caché pour l'édition -->
+                    <input type="hidden" id="publishEditId" value="">
+
+                    <!-- Carte principale — Informations du bien -->
+                    <div class="publish-card publish-card-main">
+                        <div class="publish-card-header">
+                            <i class="ri-home-smile-2-line"></i>
+                            <h2>Informations du bien</h2>
+                        </div>
+                        <div class="form-group">
+                            <label for="publishTitle">Nom du bien</label>
+                            <input type="text" id="publishTitle" placeholder="Ex : Villa Cocotier Luxe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="publishDescription">Description</label>
+                            <textarea id="publishDescription" placeholder="Décrivez le bien en détail…" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="publishLocation">Localisation</label>
+                            <input type="text" id="publishLocation" placeholder="Ex : Cotonou, Fidjrossè" required>
+                        </div>
+                    </div>
+
+                    <!-- Carte détails — Catégorie, Chambres, Surface, Prix -->
+                    <div class="publish-card publish-card-details">
+                        <div class="publish-card-header">
+                            <i class="ri-settings-4-line"></i>
+                            <h2>Détails</h2>
+                        </div>
+                        <div class="form-group">
+                            <label for="publishCategory">Catégorie</label>
+                            <select id="publishCategory" required>
+                                <option value="" disabled selected>Choisir une catégorie</option>
+                                <option value="Séjour">Séjour</option>
+                                <option value="Location">Location</option>
+                                <option value="Villa">Villa</option>
+                                <option value="Achat">Achat</option>
+                                <option value="Parcelle">Parcelle</option>
+                            </select>
+                        </div>
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label for="publishBeds">Chambres</label>
+                                <input type="number" id="publishBeds" placeholder="0" min="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="publishArea">Surface m²</label>
+                                <input type="number" id="publishArea" placeholder="0" min="1" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="publishPrice">Prix (FCFA)</label>
+                            <input type="number" id="publishPrice" placeholder="Ex : 50000" min="0" required>
+                        </div>
+                    </div>
+
+                    <!-- Carte médias — Upload photos/vidéos -->
+                    <div class="publish-card publish-card-media">
+                        <div class="publish-card-header">
+                            <i class="ri-image-add-line"></i>
+                            <h2>Médias</h2>
+                        </div>
+                        <div class="upload-zone" id="uploadZone">
+                            <div class="upload-zone-inner">
+                                <i class="ri-cloud-upload-line"></i>
+                                <p>Glissez vos fichiers ici</p>
+                                <span class="upload-hint">ou <span class="upload-browse">parcourir</span></span>
+                            </div>
+                            <input type="file" id="uploadInput" multiple accept="image/*,video/*" hidden>
+                        </div>
+                        <div class="upload-previews" id="uploadPreviews"></div>
+                    </div>
+
+                    <!-- Option Anonyme (Test 48h) -->
+                    <div style="grid-column: 1 / -1; display: flex; align-items: center; gap: 1rem; margin-top: 1rem; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 1.2rem; border: 1.5px solid rgba(0,0,0,0.05);">
+                        <input type="checkbox" id="publishAnonymous" style="width: 2rem; height: 2rem; cursor: pointer; accent-color: #5df8ab;">
+                        <label for="publishAnonymous" style="font-size: 1.4rem; font-weight: 600; cursor: pointer; color: var(--text-primary);">
+                            Publier de façon anonyme <span style="font-weight: 400; color: var(--text-secondary);">(Masquer le nom de l'agence pendant 48h pour stimuler la convoitise)</span>
+                        </label>
+                    </div>
+
+                    <!-- Bouton soumettre -->
+                    <button type="submit" class="btn-publish" id="publishSubmitBtn">
+                        <i class="ri-send-plane-fill"></i> Publier
+                    </button>
+                </form>
+            </section>
+
+            <!-- ══════ SECTION 3 — Mes Publications ══════ -->
+            <section class="dashboard-section" id="section-ag-publications">
+                <!-- Barre de filtres -->
+                <div class="filter-bar" id="filterBar">
+                    <button class="filter-btn active" data-filter="Tous">Tous</button>
+                    <button class="filter-btn" data-filter="Séjour">Séjour</button>
+                    <button class="filter-btn" data-filter="Location">Location</button>
+                    <button class="filter-btn" data-filter="Villa">Villa</button>
+                    <button class="filter-btn" data-filter="Achat">Achat</button>
+                    <button class="filter-btn" data-filter="Parcelle">Parcelle</button>
+                </div>
+
+                <!-- Grille masonry -->
+                <div class="masonry-grid" id="agPublicationsGrid">
+                    <!-- Généré par JS -->
+                </div>
+            </section>
+
+            <!-- ══════ SECTION 4 — Aperçu Profil ══════ -->
+            <section class="dashboard-section" id="section-ag-preview">
+                <div class="preview-container" id="previewContainer">
+                    <!-- Généré par JS -->
+                </div>
+            </section>
+
+            <!-- ══════ SECTION 5 — Paramètres ══════ -->
+            <section class="dashboard-section" id="section-ag-settings">
+                <form class="settings-layout" id="settingsForm" autocomplete="off">
+
+                    <!-- Carte photo de profil -->
+                    <div class="settings-card settings-card-photo">
+                        <div class="profile-photo-circle" id="settingsPhotoCircle">
+                            <span class="profile-photo-initials" id="settingsPhotoInitials">AI</span>
+                            <img class="profile-photo-img" id="settingsPhotoImg" src="" alt="Photo de profil" style="display:none;">
+                            <div class="profile-photo-overlay" id="settingsPhotoOverlay">
+                                <i class="ri-camera-line"></i>
+                            </div>
+                        </div>
+                        <input type="file" id="settingsPhotoInput" accept="image/*" hidden>
+                        <p class="profile-photo-hint">Changer la photo</p>
+                    </div>
+
+                    <!-- Carte identité -->
+                    <div class="settings-card settings-card-identity">
+                        <div class="settings-card-header">
+                            <i class="ri-building-2-line"></i>
+                            <h2>Identité</h2>
+                        </div>
+                        <div class="form-group">
+                            <label for="settingsName">Nom de l'agence</label>
+                            <input type="text" id="settingsName" placeholder="Nom de votre agence">
+                        </div>
+                        <div class="form-group">
+                            <label for="settingsBio">À propos / Bio</label>
+                            <textarea id="settingsBio" placeholder="Décrivez votre agence…"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Carte localisation & horaires -->
+                    <div class="settings-card settings-card-location">
+                        <div class="settings-card-header">
+                            <i class="ri-map-pin-2-line"></i>
+                            <h2>Localisation & Horaires</h2>
+                        </div>
+                        <div class="form-group">
+                            <label for="settingsLocation">Adresse</label>
+                            <input type="text" id="settingsLocation" placeholder="Ex : Cotonou, Fidjrossè (Bénin)">
+                        </div>
+                        <div class="form-group">
+                            <label for="settingsHours">Horaires</label>
+                            <input type="text" id="settingsHours" placeholder="Ex : 08:00 - 18:30">
+                        </div>
+                    </div>
+
+                    <!-- Carte réseaux sociaux -->
+                    <div class="settings-card settings-card-social">
+                        <div class="settings-card-header">
+                            <i class="ri-links-line"></i>
+                            <h2>Réseaux sociaux</h2>
+                        </div>
+                        <div class="social-input-row">
+                            <i class="ri-instagram-line social-input-icon"></i>
+                            <input type="url" id="settingsInstagram" placeholder="instagram.com/…">
+                        </div>
+                        <div class="social-input-row">
+                            <i class="ri-tiktok-line social-input-icon"></i>
+                            <input type="url" id="settingsTiktok" placeholder="tiktok.com/…">
+                        </div>
+                        <div class="social-input-row">
+                            <i class="ri-whatsapp-line social-input-icon"></i>
+                            <input type="tel" id="settingsWhatsapp" placeholder="22997000000">
+                        </div>
+                        <div class="social-input-row">
+                            <i class="ri-facebook-circle-line social-input-icon"></i>
+                            <input type="url" id="settingsFacebook" placeholder="facebook.com/…">
+                        </div>
+                        <div class="social-input-row">
+                            <i class="ri-phone-line social-input-icon"></i>
+                            <input type="tel" id="settingsPhone" placeholder="+22997000000">
+                        </div>
+                    </div>
+
+                    <!-- Bouton sauvegarder -->
+                    <button type="submit" class="btn-save" id="settingsSaveBtn">
+                        <i class="ri-save-line"></i> Enregistrer les modifications
+                    </button>
+                </form>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         DOCK / MENU FLOTTANT
+    ═══════════════════════════════════════════ -->
+    <div class="dock-container" id="dockContainer">
+        <!-- Bouton déclencheur -->
+        <button class="dock-trigger" id="dockTrigger" aria-label="Menu de navigation">
+            <i class="ri-apps-line"></i>
+        </button>
+
+        <!-- Menu du dock -->
+        <div class="circular-menu" id="circularMenu">
+            <button class="menu-item item-1 active" data-section="section-ag-home" title="Tableau de bord">
+                <i class="ri-dashboard-line"></i>
+                <span class="menu-text">Accueil</span>
+            </button>
+            <button class="menu-item item-2" data-section="section-ag-publish" title="Publier">
+                <i class="ri-add-circle-line"></i>
+                <span class="menu-text">Publier</span>
+            </button>
+            <button class="menu-item item-3" data-section="section-ag-publications" title="Mes Publications">
+                <i class="ri-layout-grid-line"></i>
+                <span class="menu-text">Publications</span>
+            </button>
+            <button class="menu-item item-4" data-section="section-ag-preview" title="Aperçu Profil">
+                <i class="ri-eye-line"></i>
+                <span class="menu-text">Aperçu</span>
+            </button>
+            <button class="menu-item item-5" data-section="section-ag-settings" title="Paramètres">
+                <i class="ri-settings-3-line"></i>
+                <span class="menu-text">Paramètres</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast de notification -->
+    <div class="toast-notification" id="toastNotification">
+        <i class="ri-check-line"></i>
+        <span id="toastMessage">Succès !</span>
+    </div>
+
+</body>
+</html>

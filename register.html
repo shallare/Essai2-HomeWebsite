@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S'inscrire sur ToMee - Plateforme Immobilière</title>
+    <link rel="stylesheet" href="styleRegister.css">
+    <link rel="stylesheet" href="Icons/css/boxicons.min.css">
+    <script src="registerApp.js" defer></script>
+</head>
+<body>
+    <div class="register-container">
+        
+        <!-- Logo Header -->
+        <header class="register-header">
+            <div class="logo-wrapper">
+                <a href="register.html" class="logo-text">ToMee</a>
+            </div>
+            <p>Créez votre compte pour acheter, louer ou vendre des biens en Afrique.</p>
+        </header>
+
+        <!-- Glassmorphic Card -->
+        <main class="register-card">
+            
+            <!-- Role Toggle Tabs -->
+            <div class="role-selector">
+                <button type="button" class="role-tab active" id="tab-particulier">
+                    <i class="bx bx-user"></i> Particulier
+                </button>
+                <button type="button" class="role-tab" id="tab-agence">
+                    <i class="bx bx-briefcase"></i> Agence Immobilière
+                </button>
+            </div>
+
+            <!-- Form: Particulier -->
+            <form id="form-particulier" class="signup-form active">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="part-name">Nom complet</label>
+                        <div class="input-wrapper">
+                            <i class="bx bx-user input-icon"></i>
+                            <input type="text" id="part-name" placeholder="Jean DOSSOU" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="part-email">Adresse e-mail</label>
+                        <div class="input-wrapper">
+                            <i class="bx bx-envelope input-icon"></i>
+                            <input type="email" id="part-email" placeholder="jeandossou@gmail.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="part-phone">Téléphone</label>
+                        <div class="input-wrapper">
+                            <i class="bx bx-phone input-icon"></i>
+                            <input type="tel" id="part-phone" placeholder="+2290157596569" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="part-currency">Devise souhaitée</label>
+                        <div class="input-wrapper">
+                            <i class="bx bx-money input-icon"></i>
+                            <select id="part-currency" required>
+                                <option value="XOF">FCFA (XOF)</option>
+                                <option value="XAF">FCFA (XAF)</option>
+                                <option value="USD">Dollar ($)</option>
+                                <option value="EUR">Euro (€)</option>
+                                <option value="NGN">Naira (₦)</option>
+                                <option value="GHS">Cedi (₵)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="part-intent">Vous souhaitez</label>
+                        <div class="input-wrapper">
+                            <i class="bx bx-select-multiple input-icon"></i>
+                            <select id="part-intent" required>
+                                <option value="buy">Acheter un bien / une parcelle</option>
+                                <option value="rent">Louer un appartement / une maison</option>
+                                <option value="both">Les deux</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="part-city">Ville préférée (Optionnel)</label>
+                        <div class="input-wrapper">
+                            <i class="bx bx-map input-icon"></i>
+                            <input type="text" id="part-city" placeholder="Ex: Cotonou, Porto-Novo...">
+                        </div>
+                    </div>
+
+                    <div class="form-group form-group-full">
+                        <label for="part-budget">Budget Estimé (Optionnel)</label>
+                        <div class="input-wrapper">
+                            <i class="bx bx-wallet input-icon"></i>
+                            <select id="part-budget">
+                                <option value="">Choisir un budget...</option>
+                                <option value="30000">Moins de 30 000</option>
+                                <option value="50000">Moins de 50 000</option>
+                                <option value="70000">Moins de 70 000</option>
+                                <option value="100000">Moins de 100 000</option>
+                                <option value="plus">Plus de 100 000</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Passwords spanning full width at the bottom -->
+                <div class="form-group-double">
+                    <div class="form-group">
+                        <label for="part-password">Mot de passe</label>
+                        <div class="input-wrapper">
+                            <i class="bx bx-lock-alt input-icon"></i>
+                            <input type="password" id="part-password" placeholder="••••••••" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="part-confirm-password">Confirmer le mot de passe</label>
+                        <div class="input-wrapper">
+                            <i class="bx bx-lock-alt input-icon"></i>
+                            <input type="password" id="part-confirm-password" placeholder="••••••••" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-terms">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="part-terms" required>
+                        <span class="checkmark"></span>
+                        J'accepte les <a href="#">conditions générales d'utilisation</a> de ToMee.
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn btn-signup">Créer mon compte particulier</button>
+            </form>
+
+            <!-- Form: Agence Immobilière -->
+            <form id="form-agence" class="signup-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="agency-name">Nom de l'agence</label>
+                        <div class="input-wrapper">
+                            <i class="bx bx-building-house input-icon"></i>
+                            <input type="text" id="agency-name" placeholder="Ex: Cabinet DOSSOU & Fils" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="agency-manager">Nom du responsable</label>
+                        <div class="input-wrapper">
+                            <i class="bx bx-user input-icon"></i>
+                            <input type="text" id="agency-manager" placeholder="Jean DOSSOU" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="agency-license">N° carte professionnelle</label>
+                        <div class="input-wrapper">
+                            <i class="bx bx-id-card input-icon"></i>
+                            <input type="text" id="agency-license" placeholder="Ex: CPI 229..." required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="agency-email">E-mail professionnel</label>
+                        <div class="input-wrapper">
+                            <i class="bx bx-envelope input-icon"></i>
+                            <input type="email" id="agency-email" placeholder="jeandossou@gmail.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="agency-phone">Téléphone de l'agence</label>
+                        <div class="input-wrapper">
+                            <i class="bx bx-phone input-icon"></i>
+                            <input type="tel" id="agency-phone" placeholder="+2290157596569" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="agency-currency">Devise de l'agence</label>
+                        <div class="input-wrapper">
+                            <i class="bx bx-money input-icon"></i>
+                            <select id="agency-currency" required>
+                                <option value="XOF">FCFA (XOF)</option>
+                                <option value="XAF">FCFA (XAF)</option>
+                                <option value="USD">Dollar ($)</option>
+                                <option value="EUR">Euro (€)</option>
+                                <option value="NGN">Naira (₦)</option>
+                                <option value="GHS">Cedi (₵)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-group-double-span">
+                        <label for="agency-city">Ville de l'agence</label>
+                        <div class="input-wrapper">
+                            <i class="bx bx-map input-icon"></i>
+                            <input type="text" id="agency-city" placeholder="Ex: Cotonou, Porto-Novo..." required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="agency-website">Site internet (Optionnel)</label>
+                        <div class="input-wrapper">
+                            <i class="bx bx-globe input-icon"></i>
+                            <input type="url" id="agency-website" placeholder="https://www.cabinetdossou.com">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Passwords spanning full width at the bottom -->
+                <div class="form-group-double">
+                    <div class="form-group">
+                        <label for="agency-password">Mot de passe</label>
+                        <div class="input-wrapper">
+                            <i class="bx bx-lock-alt input-icon"></i>
+                            <input type="password" id="agency-password" placeholder="••••••••" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="agency-confirm-password">Confirmer le mot de passe</label>
+                        <div class="input-wrapper">
+                            <i class="bx bx-lock-alt input-icon"></i>
+                            <input type="password" id="agency-confirm-password" placeholder="••••••••" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-terms">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="agency-terms" required>
+                        <span class="checkmark"></span>
+                        J'accepte la <a href="#">charte professionnelle</a> et les conditions de ToMee.
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn btn-signup">Créer mon compte agence</button>
+            </form>
+
+            <!-- Card Footer -->
+            <footer class="card-footer">
+                <p>Déjà inscrit ? <a href="login.html" class="login-link">Se connecter</a></p>
+                <a href="index.html" class="back-home"><i class="bx bx-arrow-back"></i> Retour à l'accueil</a>
+            </footer>
+
+        </main>
+    </div>
+    <!-- Blurred Background Overlay -->
+    <div class="register-bg"></div>
+</body>
+</html>

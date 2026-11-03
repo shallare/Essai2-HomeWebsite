@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToMee - Accueil | Trouvez votre logement idéal</title>
+    <meta name="description" content="Explorez les meilleures propriétés immobilières en Afrique. Séjours, locations, villas et terrains.">
+    <link rel="stylesheet" href="styleDashboard.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="dashboard-wrapper">
+
+        <!-- ===== TOP NAVBAR ===== -->
+        <nav class="dashboard-navbar" id="dashboardNavbar">
+            <div class="nav-left">
+                <a href="dashboard.html" class="logo-wrapper">
+                    <span class="logo-text">ToMee</span>
+                </a>
+            </div>
+
+            <div class="nav-center">
+                <div class="nav-search-bar">
+                    <input type="text" id="dashboardSearch" placeholder="Rechercher propriétés, agences, zones...">
+                    <button id="dashboardSearchClose" class="search-close-btn" title="Fermer"><i class="ri-close-line"></i></button>
+                    <button id="dashboardSearchBtn"><i class="ri-search-line"></i></button>
+                </div>
+            </div>
+
+            <div class="nav-right">
+                <button class="nav-icon-btn mobile-search-trigger" id="mobileSearchBtn" title="Rechercher">
+                    <i class="ri-search-line"></i>
+                </button>
+                <button class="nav-icon-btn" id="toggleDarkMode" title="Mode sombre">
+                    <i class="ri-moon-line"></i>
+                </button>
+                <a href="index.html" class="nav-icon-btn" id="logoutBtn" title="Se déconnecter">
+                    <i class="ri-logout-box-r-line"></i>
+                </a>
+            </div>
+        </nav>
+
+        <!-- ===== MAIN DASHBOARD CARD ===== -->
+        <main class="dashboard-card">
+
+            <!-- ========== HOME SECTION ========== -->
+            <section class="dashboard-section active-section" id="section-home">
+
+                <!-- Filter Panel -->
+                <div class="filter-panel">
+                    <div class="filter-pill-selector">
+                        <button class="filter-type-btn active" data-filter="Tous">Tous</button>
+                        <button class="filter-type-btn" data-filter="Séjour meublé">Séjour</button>
+                        <button class="filter-type-btn" data-filter="Location">Location</button>
+                        <button class="filter-type-btn" data-filter="Villa">Villa</button>
+                        <button class="filter-type-btn" data-filter="Maison à acheter">Achat</button>
+                        <button class="filter-type-btn" data-filter="Parcelle">Parcelle</button>
+                    </div>
+                    <div class="filter-dropdowns">
+                        <div class="filter-dropdown">
+                            <i class="ri-map-pin-line"></i>
+                            <select id="filterZone">
+                                <option value="">Toutes les zones</option>
+                                <option value="Cotonou">Cotonou</option>
+                                <option value="Porto-Novo">Porto-Novo</option>
+                                <option value="Abomey-Calavi">Abomey-Calavi</option>
+                                <option value="Parakou">Parakou</option>
+                                <option value="Lomé">Lomé</option>
+                                <option value="Accra">Accra</option>
+                                <option value="Ouidah">Ouidah</option>
+                                <option value="Bohicon">Bohicon</option>
+                            </select>
+                        </div>
+                        <div class="filter-dropdown">
+                            <i class="ri-money-dollar-circle-line"></i>
+                            <select id="filterBudget">
+                                <option value="">Tous budgets</option>
+                                <option value="30000">≤ 30 000 FCFA</option>
+                                <option value="50000">≤ 50 000 FCFA</option>
+                                <option value="70000">≤ 70 000 FCFA</option>
+                                <option value="100000">≤ 100 000 FCFA</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search Placeholder Box for Mobile -->
+                <div class="search-placeholder-box hidden" id="searchPlaceholderBox">
+                    <i class="ri-search-2-line"></i>
+                    <p>Saisissez un mot-clé ou appliquez des filtres pour lancer la recherche.</p>
+                </div>
+
+                <!-- 3D Cover Flow Carousel Workspace -->
+                <div class="carousel-workspace" id="carouselWorkspace">
+                    <div class="coverflow-container">
+                        <!-- Dynamic 3D Track -->
+                        <div class="coverflow-track" id="coverflowTrack">
+                            <!-- Cards will be populated dynamically by JS -->
+                        </div>
+
+                         <!-- Vertical Floating Actions Bar -->
+                        <div class="floating-actions-bar">
+                            <button class="action-btn" id="carouselLikeBtn" title="Aimer"><i class="ri-heart-line"></i></button>
+                            <button class="action-btn" id="carouselChatBtn" title="Envoyer un message"><i class="ri-chat-3-line"></i></button>
+                            <button class="action-btn" id="carouselFavBtn" title="Favoris"><i class="ri-bookmark-line"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Under-Card Agency Info Control Pill -->
+                    <div class="under-card-pill">
+                        <button class="pill-arrow-btn" id="prevCardBtn"><i class="ri-arrow-left-s-line"></i></button>
+                        <div class="pill-profile-content">
+                            <div class="pill-avatar" id="agencyAvatar">AI</div>
+                            <div class="pill-details">
+                                <h4 id="agencyName">Abomey Immo</h4>
+                                <span id="agencyMeta">Agrée Cotonou</span>
+                            </div>
+                        </div>
+                        <button class="pill-arrow-btn" id="nextCardBtn"><i class="ri-arrow-right-s-line"></i></button>
+                    </div>
+
+                    <!-- Slider Pagination Dots -->
+                    <div class="carousel-pagination" id="carouselPagination"></div>
+                </div>
+
+            </section>
+
+            <!-- ========== NOTIFICATIONS SECTION ========== -->
+            <section class="dashboard-section" id="section-notifications">
+                <div class="section-title-bar">
+                    <h2><i class="ri-notification-3-line"></i> Notifications</h2>
+                    <button class="btn-clear-all"><i class="ri-delete-bin-line"></i> Tout effacer</button>
+                </div>
+                <div id="notifLogList"></div>
+            </section>
+
+            <!-- ========== FAVORITES SECTION ========== -->
+            <section class="dashboard-section" id="section-favorites">
+                <div class="section-title-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h2><i class="ri-bookmark-line"></i> Favoris</h2>
+                    <div style="display: flex; align-items: center; gap: 1.5rem;">
+                        <span class="favorites-count-label"><span id="favCount">0</span> propriété(s)</span>
+                        <button class="btn-compare-favorites" id="btnCompareFavorites" style="display: none;"><i class="ri-arrow-left-right-line"></i> Comparer</button>
+                    </div>
+                </div>
+                <div id="favoritesComparisonOverlay" class="favorites-comparison-overlay" style="display: none;"></div>
+                <div class="favorites-grid" id="favoritesGrid"></div>
+            </section>
+
+            <!-- ========== MESSAGERIE SECTION ========== -->
+            <section class="dashboard-section" id="section-messages">
+                <div class="section-title-bar">
+                    <h2><i class="ri-chat-3-line"></i> Messagerie</h2>
+                </div>
+                <div class="chat-container">
+                    <div class="chat-contacts">
+                        <h3>Conversations</h3>
+                        <div class="contact-card active" data-contact="Abomey Immo">
+                            <div class="contact-avatar"><i class="ri-building-line"></i></div>
+                            <div class="contact-info">
+                                <h4>Abomey Immo</h4>
+                                <p>Voulez-vous visiter ?</p>
+                            </div>
+                        </div>
+                        <div class="contact-card" data-contact="Cotonou Properties">
+                            <div class="contact-avatar"><i class="ri-building-2-line"></i></div>
+                            <div class="contact-info">
+                                <h4>Cotonou Properties</h4>
+                                <p>Il est encore disponible ?</p>
+                            </div>
+                        </div>
+                        <div class="contact-card" data-contact="Résidence Bénin">
+                            <div class="contact-avatar"><i class="ri-home-heart-line"></i></div>
+                            <div class="contact-info">
+                                <h4>Résidence Bénin</h4>
+                                <p>Notre nouvelle résidence...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-view">
+                        <div class="chat-header">
+                            <button class="chat-mobile-back-btn" id="chatMobileBackBtn" title="Retour aux conversations"><i class="ri-arrow-left-line"></i></button>
+                            <div class="chat-header-content">
+                                <h4>Abomey Immo</h4>
+                                <p>En ligne</p>
+                            </div>
+                        </div>
+                        <div class="chat-messages" id="chatMessages"></div>
+                        <div class="chat-input-bar">
+                            <input type="text" id="chatInput" placeholder="Écrire un message...">
+                            <button id="chatSendBtn"><i class="ri-send-plane-fill"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== PROFILE SECTION ========== -->
+            <section class="dashboard-section" id="section-profile">
+                <div class="section-title-bar">
+                    <h2><i class="ri-user-line"></i> Mon Profil</h2>
+                </div>
+                <div class="profile-layout">
+                    <div class="profile-card-left">
+                        <div class="profile-avatar-wrapper">
+                            <div class="profile-avatar-circle" id="profileAvatarCircle"><i class="ri-user-line"></i></div>
+                            <button class="upload-photo-btn" id="uploadPhotoBtn" type="button"><i class="ri-camera-line"></i> Changer</button>
+                            <input type="file" id="profilePhotoInput" accept="image/*" hidden>
+                        </div>
+                        <h3 id="profileName">Jean DOSSOU</h3>
+                        <p class="profile-role-badge" id="profileRole">Particulier</p>
+                        <p class="profile-meta-details" id="profileEmail"><i class="ri-mail-line"></i> jeandossou@gmail.com</p>
+                        <p class="profile-meta-details" id="profilePhone"><i class="ri-phone-line"></i> +2290157596569</p>
+                        <p class="profile-meta-details" id="profileCity"><i class="ri-map-pin-line"></i> Cotonou</p>
+                    </div>
+                    <div class="profile-card-right">
+                        <h3>Paramètres</h3>
+                        <div class="settings-grid">
+                            <div class="form-group">
+                                <label for="settingsName">Nom complet</label>
+                                <input type="text" id="settingsName" value="Jean DOSSOU">
+                            </div>
+                            <div class="form-group">
+                                <label for="settingsEmail">Email</label>
+                                <input type="email" id="settingsEmail" value="jeandossou@gmail.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="settingsPhone">Téléphone</label>
+                                <input type="tel" id="settingsPhone" value="+2290157596569">
+                            </div>
+                            <div class="form-group">
+                                <label for="settingsCity">Ville préférée</label>
+                                <select id="settingsCity">
+                                    <option value="Cotonou" selected>Cotonou</option>
+                                    <option value="Porto-Novo">Porto-Novo</option>
+                                    <option value="Abomey-Calavi">Abomey-Calavi</option>
+                                    <option value="Parakou">Parakou</option>
+                                    <option value="Lomé">Lomé</option>
+                                    <option value="Accra">Accra</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="settingsCurrency">Devise</label>
+                                <select id="settingsCurrency">
+                                    <option value="XOF (FCFA)" selected>XOF (FCFA)</option>
+                                    <option value="GHS (Cedis)">GHS (Cedis)</option>
+                                    <option value="NGN (Naira)">NGN (Naira)</option>
+                                    <option value="EUR (Euro)">EUR (Euro)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="settingsBudget">Budget estimé</label>
+                                <select id="settingsBudget">
+                                    <option value="Moins de 30 000">Moins de 30 000</option>
+                                    <option value="Moins de 50 000">Moins de 50 000</option>
+                                    <option value="Moins de 70 000" selected>Moins de 70 000</option>
+                                    <option value="Moins de 100 000">Moins de 100 000</option>
+                                    <option value="Plus de 100 000">Plus de 100 000</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn-save-settings" id="saveSettings">
+                            <i class="ri-save-line"></i> Sauvegarder
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Viral Share (NGL Style) Section -->
+                <div class="profile-viral-share-container">
+                    <div class="viral-share-card">
+                        <div class="viral-share-info">
+                            <h3 class="viral-share-title"><i class="ri-rocket-2-line"></i> ToMee Story (Style NGL) 🚀</h3>
+                            <p class="viral-share-desc">Partage tes favoris sur Instagram ou WhatsApp. Tes amis votent anonymement pour t'aider à choisir la maison idéale !</p>
+                        </div>
+                        <button class="btn-generate-share" id="btnGenerateViralLink">
+                            <i class="ri-links-line"></i> Générer mon lien Story
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Followed Agencies Section -->
+                <div class="profile-followed-agencies-container">
+                    <h3 class="profile-followed-agencies-title"><i class="ri-government-line"></i> Agences suivies</h3>
+                    <div class="followed-agencies-grid" id="followedAgenciesGrid">
+                        <!-- Followed agencies will be dynamically rendered here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== AGENCY PROFILE SECTION ========== -->
+            <section class="dashboard-section" id="section-agency-profile">
+                <div class="glass-section-card">
+                    <!-- Back Button to return to Home -->
+                    <button class="agency-profile-back-btn" id="agencyProfileBack"><i class="ri-arrow-left-line"></i> Retour aux annonces</button>
+                    
+                    <div class="agency-profile-header">
+                        <div class="agency-profile-logo-wrap">
+                            <div class="agency-profile-logo" id="agProfLogo">AI</div>
+                        </div>
+                        
+                        <div class="agency-profile-main-info">
+                            <h2 id="agProfName">Abomey Immo</h2>
+                            <p class="agency-profile-badge"><i class="ri-checkbox-circle-fill"></i> Agence Agrée ToMee</p>
+                            
+                            <div class="agency-profile-stats">
+                                <div class="agency-stat-item" title="Followers">
+                                    <span class="stat-num"><i class="ri-user-follow-line"></i> <span id="agProfFollowers">4.2k</span></span>
+                                </div>
+                                <div class="agency-stat-item" title="Likes Totaux">
+                                    <span class="stat-num"><i class="ri-heart-line" style="color:#ff6b6b"></i> <span id="agProfLikes">28.5k</span></span>
+                                </div>
+                                <div class="agency-stat-item" title="Publications">
+                                    <span class="stat-num"><i class="ri-layout-grid-line"></i> <span id="agProfPubsCount">8</span></span>
+                                </div>
+                            </div>
+
+                            <div class="agency-profile-actions-wrapper">
+                                <div class="agency-profile-actions primary-actions">
+                                    <button class="agency-profile-action-btn primary" id="agProfFollowBtn"><i class="ri-user-add-line"></i> Suivre</button>
+                                    <button class="agency-profile-action-btn message-btn" id="agProfMessageBtn"><i class="ri-chat-3-line"></i> Écrire</button>
+                                </div>
+                                <div class="agency-profile-actions secondary-actions">
+                                    <button class="agency-profile-action-btn secondary" id="agProfBlockBtn"><i class="ri-forbid-line"></i> Bloquer</button>
+                                    <button class="agency-profile-action-btn secondary" id="agProfReportBtn"><i class="ri-error-warning-line"></i> Signaler</button>
+                                </div>
+                                <div class="agency-profile-social-links">
+                                    <a class="agency-social-icon" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="ri-instagram-line"></i></a>
+                                    <a class="agency-social-icon" href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" title="TikTok"><i class="ri-tiktok-line"></i></a>
+                                    <a class="agency-social-icon" href="https://wa.me/22997000000" target="_blank" rel="noopener noreferrer" title="WhatsApp"><i class="ri-whatsapp-line"></i></a>
+                                    <a class="agency-social-icon" href="tel:+22997000000" title="Appeler"><i class="ri-phone-line"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="agency-profile-notice" id="agProfNotice"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="agency-profile-details-grid">
+                        <div class="agency-detail-card">
+                            <h3><i class="ri-file-text-line"></i> À propos de l'agence</h3>
+                            <p id="agProfBio">Leader de l'immobilier moderne, notre agence vous accompagne dans la recherche et l'acquisition de parcelles, villas de luxe et appartements meublés de séjours.</p>
+                        </div>
+                        <div class="agency-detail-card">
+                            <h3><i class="ri-information-line"></i> Informations Clés</h3>
+                            <div class="info-details-list">
+                                <p><strong><i class="ri-map-pin-line"></i> Localisation:</strong> <span id="agProfLocation">Cotonou, Fidjrossè</span></p>
+                                <p><strong><i class="ri-time-line"></i> Horaires:</strong> <span id="agProfHours">08:00 - 18:30</span></p>
+                                <p><strong><i class="ri-calendar-line"></i> Ancienneté:</strong> <span id="agProfYears">4 ans sur la plateforme</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="agency-publications-workspace">
+                        <!-- Removed 'Publications de l'agence' title bar -->
+                        
+                        <!-- Filters specifically for agency publications -->
+                        <div class="agency-filter-bar" id="agencyFilterBar">
+                            <button class="agency-filter-btn active" data-ag-filter="Tous">Tous</button>
+                            <button class="agency-filter-btn" data-ag-filter="Séjour meublé">Séjour</button>
+                            <button class="agency-filter-btn" data-ag-filter="Location">Location</button>
+                            <button class="agency-filter-btn" data-ag-filter="Villa">Villa</button>
+                            <button class="agency-filter-btn" data-ag-filter="Maison à acheter">Achat</button>
+                        </div>
+                        
+                        <div class="properties-grid" id="agencyPropertiesGrid">
+                            <!-- Dynamic grid of properties filtered for this agency -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- ===== NOTIFICATIONS STACK (Bottom-Left) ===== -->
+    <div class="notifications-stack hidden" id="notifStack">
+        <div class="stack-header">
+            <span><i class="ri-notification-3-fill"></i> Notifications</span>
+            <button id="notifDismissAll">Fermer</button>
+        </div>
+        <div class="stack-body"></div>
+    </div>
+
+    <!-- ===== CIRCULAR DOCK (Bottom-Center) ===== -->
+    <div class="dock-container" id="dockContainer">
+        <!-- Sensor Bar / Hover Indicator -->
+        <div class="dock-sensor-bar" id="dockSensorBar">
+            <span class="sensor-line"></span>
+        </div>
+        <div class="circular-menu" id="circularMenu">
+            <div class="menu-item item-1 active" data-section="home" title="Accueil">
+                <i class="ri-home-5-line"></i>
+                <span class="menu-text">Accueil</span>
+            </div>
+            <div class="menu-item item-2" data-section="notifications" title="Notifications">
+                <i class="ri-notification-3-line"></i>
+                <span class="menu-text">Notifications</span>
+            </div>
+            <div class="menu-item item-3" data-section="favorites" title="Favoris">
+                <i class="ri-bookmark-line"></i>
+                <span class="menu-text">Favoris</span>
+            </div>
+            <div class="menu-item item-4" data-section="messages" title="Messagerie">
+                <i class="ri-chat-3-line"></i>
+                <span class="menu-text">Messagerie</span>
+            </div>
+            <div class="menu-item item-5" data-section="profile" title="Profil">
+                <i class="ri-user-line"></i>
+                <span class="menu-text">Profil</span>
+            </div>
+        </div>
+        <button class="dock-trigger" id="dockTrigger">
+            <i class="ri-apps-line"></i>
+        </button>
+    </div>
+
+    <!-- ===== FULLSCREEN MEDIA EXPAND MODAL ===== -->
+    <div class="media-expand-modal hidden" id="mediaExpandModal">
+        <button class="media-modal-close" id="mediaModalClose" title="Fermer"><i class="ri-close-line"></i></button>
+        
+        <div class="media-expand-layout">
+            <!-- Left Pane: Media Slideshow -->
+            <div class="media-expand-left">
+                <div class="media-modal-content">
+                    <button class="media-modal-arrow prev" id="mediaModalPrev" title="Précédent"><i class="ri-arrow-left-s-line"></i></button>
+                    
+                    <div class="media-modal-viewer" id="mediaModalViewer">
+                        <!-- Image or Video dynamically rendered by JS -->
+                    </div>
+                    
+                    <button class="media-modal-arrow next" id="mediaModalNext" title="Suivant"><i class="ri-arrow-right-s-line"></i></button>
+                </div>
+                <div class="media-modal-dots" id="mediaModalDots"></div>
+            </div>
+            
+            <!-- Right Pane: Details & Comments -->
+            <div class="media-expand-right">
+                <div class="media-modal-header">
+                    <span class="media-modal-tag" id="mediaModalType">LOCATION</span>
+                    <h3 id="mediaModalTitle">Résidence le Palmier</h3>
+                    <p id="mediaModalLocation"><i class="ri-map-pin-line"></i> Cotonou, Fidjrossè</p>
+                    <div class="media-modal-price-specs">
+                        <span class="modal-price" id="mediaModalPrice">50 000 FCFA</span>
+                        <div class="modal-specs">
+                            <span><i class="ri-hotel-bed-line"></i> <span id="mediaModalSpecsBeds">3 Ch.</span></span>
+                            <span><i class="ri-layout-grid-line"></i> <span id="mediaModalSpecsArea">120m²</span></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="media-modal-body">
+                    <div class="media-modal-section">
+                        <h4>Description</h4>
+                        <p id="mediaModalDesc">Description complète du logement...</p>
+                    </div>
+                    
+                    <div class="media-modal-section comments-section">
+                        <h4>Commentaires (<span id="mediaModalCommentsCount">0</span>)</h4>
+                        <div class="media-modal-comments-list" id="mediaModalCommentsList">
+                            <!-- Comments populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="media-modal-comment-input-bar">
+                    <input type="text" id="mediaModalCommentInput" placeholder="Ajouter un commentaire...">
+                    <button id="mediaModalCommentSendBtn" title="Envoyer"><i class="ri-send-plane-fill"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboardApp.js"></script>
+
+</body>
+</html>

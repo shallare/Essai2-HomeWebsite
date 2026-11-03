@@ -1,0 +1,598 @@
+/* styleRegister.css - Registration Page Styling for ToMee */
+
+@font-face {
+    font-family: Poppins;
+    src: url('Fonts/Poppins-Regular.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%; /* 1rem = 10px */
+}
+
+body {
+    color: #fff;
+    font-size: 1.6rem;
+    font-family: Poppins, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    background: #0b0c10;
+}
+
+/* Background Image with Blur */
+.register-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('img.jpg'); /* Changed from img (4).jpg to img.jpg */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -2;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.8) 100%);
+    z-index: -1;
+}
+
+a {
+    color: #5df8ab;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+a:hover {
+    color: #4ae59a;
+    text-shadow: 0 0 8px rgba(93, 248, 171, 0.3);
+}
+
+/* Main Layout Centered Container */
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+    z-index: 5;
+    position: relative;
+}
+
+/* Header Logo and Text */
+.register-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    max-width: 50rem;
+}
+
+/* Logo Wrapper with Ouroboros Background */
+.logo-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1.5rem;
+    margin-bottom: 0.8rem;
+}
+
+
+
+.logo-text {
+    font-family: 'ITC Bauhaus', 'Bauhaus 93', 'Poppins', sans-serif;
+    font-weight: 900;
+    font-size: 3.2rem;
+    letter-spacing: -0.04em;
+    color: #fff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    display: inline-block;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.logo-text:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+.register-header p {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+}
+
+/* Glassmorphic Card Container */
+.register-card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 2.8rem;
+    width: 100%;
+    max-width: 82rem; /* Wider desktop view */
+    padding: 3rem 4rem;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Role Selector Toggle Tabs */
+.role-selector {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 0.5rem;
+    border-radius: 4rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.role-tab {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.65);
+    padding: 1.2rem 2rem;
+    border-radius: 3.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    font-family: Poppins, sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.role-tab i {
+    font-size: 1.8rem;
+}
+
+.role-tab.active {
+    background: rgba(93, 248, 171, 0.12);
+    border: 1px solid rgba(93, 248, 171, 0.25);
+    color: #5df8ab;
+    box-shadow: 0 4px 15px rgba(93, 248, 171, 0.1);
+}
+
+.role-tab:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+/* Form Styles */
+.signup-form {
+    display: none;
+    transition: all 0.4s ease;
+}
+
+.signup-form.active {
+    display: block;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.form-group label {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    padding-left: 0.4rem;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.8rem;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.3s ease;
+}
+
+.input-wrapper input, .input-wrapper select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1.6rem;
+    padding: 1.2rem 2rem 1.2rem 4.8rem;
+    font-family: Poppins, sans-serif;
+    font-size: 1.4rem;
+    color: #fff;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Specific select styling override */
+.input-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+.input-wrapper select option {
+    background: #15171a;
+    color: #fff;
+}
+
+.input-wrapper input:focus, .input-wrapper select:focus {
+    border-color: #5df8ab;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 10px rgba(93, 248, 171, 0.2);
+}
+
+.input-wrapper input:focus + .input-icon, .input-wrapper select:focus + .input-icon {
+    color: #5df8ab;
+}
+
+.input-wrapper input::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+/* Custom checkbox container */
+.form-terms {
+    margin-bottom: 2rem;
+}
+
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 3rem;
+    cursor: pointer;
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+    user-select: none;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Custom checkmark design */
+.checkmark {
+    position: absolute;
+    top: 0.2rem;
+    left: 0;
+    height: 2rem;
+    width: 2rem;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 0.6rem;
+    transition: all 0.3s ease;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: #5df8ab;
+    border-color: #5df8ab;
+    box-shadow: 0 0 8px rgba(93, 248, 171, 0.4);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 0.6rem;
+    top: 0.25rem;
+    width: 0.5rem;
+    height: 0.9rem;
+    border: solid #0b2216;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Form Buttons */
+.submit-btn {
+    width: 100%;
+    padding: 1.3rem;
+    border: none;
+    border-radius: 1.8rem;
+    font-family: Poppins, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.btn-signup {
+    background: #5df8ab;
+    color: #0b2216;
+    box-shadow: 0 4px 15px rgba(93, 248, 171, 0.3);
+}
+
+.btn-signup:hover {
+    background: #4ae59a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(93, 248, 171, 0.55);
+}
+
+.btn-signup:active {
+    transform: translateY(0);
+}
+
+/* Card Footer Links */
+.card-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.card-footer p {
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.login-link {
+    font-weight: 600;
+}
+
+.back-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.back-home i {
+    font-size: 1.6rem;
+}
+
+.back-home:hover {
+    color: #5df8ab;
+}
+
+/* Non-scrollable viewport and 3-column input layout on screens > mobile (tablet/PC) */
+@media (min-width: 769px) {
+    body {
+        height: 100vh;
+        overflow: hidden;
+    }
+    
+    .register-container {
+        height: 100vh;
+        overflow: hidden;
+        padding: 2rem;
+        justify-content: center;
+    }
+    
+    .register-header {
+        margin-bottom: 1.5rem;
+    }
+    
+    .register-card {
+        padding: 3rem 4rem;
+    }
+    
+    .form-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 inputs per line */
+        gap: 1.8rem 2.2rem;
+    }
+    
+    .form-group-full {
+        grid-column: span 3;
+    }
+    
+    .form-group-double-span {
+        grid-column: span 2;
+    }
+    
+    .form-group-double {
+        grid-column: span 3;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.2rem;
+    }
+}
+
+/* Responsive Queries for Mobile */
+@media (max-width: 768px) {
+    .register-card {
+        padding: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .register-container {
+        padding: 2rem 1rem;
+    }
+    
+    .logo-text {
+        font-size: 3.2rem;
+    }
+    
+    .role-selector {
+        flex-direction: column;
+        gap: 1rem;
+        background: transparent;
+        border: none;
+        padding: 0;
+    }
+    
+    .role-tab {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 2rem;
+    }
+    
+    .form-group-double {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== Login Page Specific Styles ===== */
+
+.login-card {
+    max-width: 48rem;
+}
+
+.login-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.login-title i {
+    font-size: 2.8rem;
+    color: #5df8ab;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.forgot-link {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 500;
+}
+
+.forgot-link:hover {
+    color: #5df8ab;
+}
+
+/* Divider */
+.login-divider {
+    position: relative;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.login-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.login-divider span {
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0.4rem 2rem;
+    border-radius: 1rem;
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* Social Login Button */
+.social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.social-btn {
+    width: 100%;
+    padding: 1.3rem;
+    border-radius: 1.8rem;
+    font-family: Poppins, sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
+
+.social-btn i {
+    font-size: 2rem;
+}
+
+.social-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* form-group-double base styles (mobile first) */
+.form-group-double {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 769px) {
+    .form-group-double {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.2rem;
+    }
+}
